@@ -3,7 +3,6 @@ import { PageId } from '../types';
 import { churchApi } from '../services/api';
 import { MapPin, Phone, Mail, ArrowUp, Send, CheckCircle, ShieldCheck } from 'lucide-react';
 import { SocialMediaRow } from './SocialIcons';
-import { CornerstoneLogo } from './CornerstoneLogo';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -43,10 +42,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onPlanVisit }) => {
           
           {/* Brand Info (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <CornerstoneLogo size="md" />
+            <div>
+              <span className="font-display font-bold text-lg sm:text-xl tracking-wider text-white block">
+                CORNERSTONE CHURCH
+              </span>
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#B0B7C3] block font-medium">
+                Faith · People · Purpose
+              </span>
+            </div>
 
             <p className="text-xs sm:text-sm text-[#B0B7C3] leading-relaxed max-w-sm">
-              Built on Christ, Open to Everyone. Committed to loving God, loving people, and discipling the next generation.
+              A Christ-centred family of believers in Centurion, South Africa. Committed to loving God, loving people, and discipling the next generation.
             </p>
 
             <div className="space-y-2 pt-1">
@@ -75,11 +81,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onPlanVisit }) => {
               <li>
                 <button onClick={() => onNavigate('home')} className="hover:text-[#FF6B2C] transition-colors cursor-pointer text-left">
                   Home
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('watch-worship')} className="hover:text-[#FF6B2C] transition-colors cursor-pointer text-left font-medium text-white/95">
-                  Watch & Worship
                 </button>
               </li>
               <li>
@@ -211,7 +212,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onPlanVisit }) => {
 
         {/* Sub-Footer */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
-          <p>© {new Date().getFullYear()} Cornerstone Church. Built on Christ, Open to Everyone.</p>
+          <p>© {new Date().getFullYear()} Cornerstone Church Centurion. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
             <SocialMediaRow variant="minimal" iconClassName="w-4 h-4" />

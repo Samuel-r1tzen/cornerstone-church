@@ -5,14 +5,12 @@ import { ContactSection } from '../components/ContactSection';
 import { FaqSection } from '../components/FaqSection';
 import { TestimoniesSection } from '../components/TestimoniesSection';
 import { SocialMediaRow } from '../components/SocialIcons';
-import { MountainSermonFallback, SermonImageWithFallback } from '../components/MountainSermonFallback';
 import { EventImageWithFallback } from '../components/WorshipEventFallback';
 import { 
   ArrowRight, 
   Calendar, 
   MapPin, 
   Clock, 
-  Play, 
   Coffee, 
   Users, 
   ShieldCheck, 
@@ -134,10 +132,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onPlanVisit }) =
               <span className="arrow">→</span>
             </button>
             <button 
-              onClick={() => onNavigate('live')}
+              onClick={() => onNavigate('sermons')}
               className="btn cursor-pointer bg-black/40 backdrop-blur-md border-white/20 hover:border-white/50"
             >
-              <span>Watch Live</span>
+              <span>Watch Online</span>
               <span className="arrow">→</span>
             </button>
           </div>
@@ -583,139 +581,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onPlanVisit }) =
               <p className="text-xs text-[#B0B7C3] mt-0.5">10:00 AM · Main Sanctuary · Open registrations for all believers</p>
             </div>
             <span className="event-arrow text-xl text-[#B0B7C3] transition-all">→</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          SERMONS (Watch & Listen)
-         ============================================================ */}
-      <section id="sermons" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
-          <div>
-            <PencilHeading text="WATCH & LISTEN" dataPencil="sermons" maxWidth="600px" />
-            <p className="text-[11px] font-display tracking-[0.2em] uppercase text-[#B0B7C3] flex items-center gap-3 mt-2">
-              <span className="w-8 h-px bg-[#FF6B2C]" />
-              Watch and grow
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => onNavigate('live')}
-              className="px-3.5 py-2 rounded-sm bg-[#FF6B2C] hover:bg-[#FF824D] text-[#080B12] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-            >
-              <span>Live Service</span>
-            </button>
-            <button
-              onClick={() => onNavigate('previous-services')}
-              className="px-3.5 py-2 rounded-sm bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-            >
-              <span>Previous Services</span>
-            </button>
-            <button
-              onClick={() => onNavigate('sermons')}
-              className="text-xs font-semibold text-[#B0B7C3] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ml-1"
-            >
-              <span>Archive</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Featured Sermon */}
-          <div 
-            onClick={() => onNavigate('sermons')}
-            className="lg:col-span-7 relative rounded-sm overflow-hidden border border-white/10 group cursor-pointer aspect-video sm:aspect-[16/10]" 
-            data-reveal="card"
-          >
-            <img 
-              src="https://images.pexels.com/photos/8815059/pexels-photo-8815059.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-              alt="Featured sermon" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 filter brightness-[0.85] group-hover:brightness-100"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080B12] via-[#080B12]/40 to-transparent flex flex-col justify-end p-6 sm:p-8">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="w-8 h-8 rounded-full bg-[#FF6B2C] flex items-center justify-center text-[#080B12]">
-                  <Play className="w-4 h-4 fill-current translate-x-0.5" />
-                </span>
-                <span className="text-xs font-mono uppercase tracking-wider text-[#FF6B2C]">
-                  Ps. David Mokoena · October 2025
-                </span>
-              </div>
-              <h3 className="font-display font-bold text-2xl sm:text-3xl text-white group-hover:text-[#FF6B2C] transition-colors">
-                The Power of Surrender
-              </h3>
-              <p className="text-xs text-[#B0B7C3] mt-1 line-clamp-2">
-                Discovering freedom, peace, and spiritual authority when we yield fully to the lordship of Jesus Christ.
-              </p>
-            </div>
-          </div>
-
-          {/* 3 Interactive Recent Sermons */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-3">
-            <div 
-              onClick={() => onNavigate('sermons')}
-              className="p-4 rounded-sm bg-[#0A0F1F] border border-white/10 hover:border-[#FF6B2C] flex items-center gap-4 transition-all duration-300 cursor-pointer group"
-              data-reveal="text"
-            >
-              {/* When there isn't an image at Faith That Moves Mountains, renders custom mountain artwork */}
-              <SermonImageWithFallback 
-                src="" 
-                alt="Faith That Moves Mountains" 
-                title="Faith That Moves Mountains"
-                thumbnailClassName="w-16 h-14 rounded-sm shrink-0"
-              />
-              <div className="flex-1 min-w-0">
-                <h4 className="font-display font-semibold text-sm text-white group-hover:text-[#FF6B2C] transition-colors truncate">
-                  Faith That Moves Mountains
-                </h4>
-                <p className="text-xs text-[#B0B7C3]">Ps. Sarah van Wyk · 5 Oct 2025</p>
-              </div>
-              <Play className="w-4 h-4 text-[#FF6B2C] shrink-0 group-hover:scale-125 transition-transform" />
-            </div>
-
-            <div 
-              onClick={() => onNavigate('sermons')}
-              className="p-4 rounded-sm bg-[#0A0F1F] border border-white/10 hover:border-[#FF6B2C] flex items-center gap-4 transition-all duration-300 cursor-pointer group"
-              data-reveal="text"
-            >
-              <img src="https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" className="w-16 h-14 object-cover rounded-sm shrink-0" />
-              <div className="flex-1 min-w-0">
-                <h4 className="font-display font-semibold text-sm text-white group-hover:text-[#FF6B2C] transition-colors truncate">
-                  Living with Eternal Purpose
-                </h4>
-                <p className="text-xs text-[#B0B7C3]">Ps. David Mokoena · 28 Sep 2025</p>
-              </div>
-              <Play className="w-4 h-4 text-[#FF6B2C] shrink-0" />
-            </div>
-
-            <div 
-              onClick={() => onNavigate('sermons')}
-              className="p-4 rounded-sm bg-[#0A0F1F] border border-white/10 hover:border-[#FF6B2C] flex items-center gap-4 transition-all duration-300 cursor-pointer group"
-              data-reveal="text"
-            >
-              <img src="https://images.pexels.com/photos/8942991/pexels-photo-8942991.jpeg?auto=compress&cs=tinysrgb&w=200" alt="" className="w-16 h-14 object-cover rounded-sm shrink-0" />
-              <div className="flex-1 min-w-0">
-                <h4 className="font-display font-semibold text-sm text-white group-hover:text-[#FF6B2C] transition-colors truncate">
-                  The Heart of True Worship
-                </h4>
-                <p className="text-xs text-[#B0B7C3]">Ps. John Dlamini · 21 Sep 2025</p>
-              </div>
-              <Play className="w-4 h-4 text-[#FF6B2C] shrink-0" />
-            </div>
-
-            <div className="pt-2">
-              <button 
-                onClick={() => onNavigate('sermons')}
-                className="btn w-full justify-center cursor-pointer"
-              >
-                <span>View All Sermons & Series</span>
-                <span className="arrow">→</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>

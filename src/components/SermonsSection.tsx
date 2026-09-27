@@ -145,17 +145,13 @@ export const SermonsSection: React.FC = () => {
                   <span>{isPlaying ? 'Pause Sermon' : 'Listen Now'}</span>
                 </button>
 
-                <a
-                  href="https://open.spotify.com/show/2wLFiZpfXw2hLztyAz4a9K"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Listen to 3C Church on Spotify"
-                  className="py-3 px-4 rounded-sm bg-[#1ED760]/10 hover:bg-[#1ED760]/20 border border-[#1ED760]/30 hover:border-[#1ED760]/60 text-[#1ED760] hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all"
-                  title="Listen to 3C Church on Spotify"
+                <span
+                  className="py-3 px-4 rounded-sm bg-[#1ED760]/10 border border-[#1ED760]/30 text-[#1ED760] text-xs font-semibold flex items-center justify-center gap-1.5 cursor-default"
+                  title="Audio podcast available"
                 >
                   <SpotifyIcon className="w-4 h-4 fill-current" />
-                  <span className="hidden sm:inline">Spotify</span>
-                </a>
+                  <span className="hidden sm:inline">Podcast</span>
+                </span>
 
                 <button
                   onClick={() => handleShare(activeSermon)}

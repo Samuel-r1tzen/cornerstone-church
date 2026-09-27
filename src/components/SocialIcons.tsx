@@ -2,8 +2,6 @@ import React from 'react';
 
 export interface SocialLink {
   name: string;
-  url: string;
-  ariaLabel: string;
   hoverColor: string;
   textGradient?: string;
   icon: (props: { className?: string }) => React.JSX.Element;
@@ -91,29 +89,21 @@ export const XIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" 
 export const SOCIAL_MEDIA_LINKS: SocialLink[] = [
   {
     name: 'YouTube',
-    url: 'https://www.youtube.com/@BertPretorius',
-    ariaLabel: 'Visit Bert Pretorius on YouTube',
     hoverColor: 'hover:text-[#FF0000] hover:border-[#FF0000]/50 hover:bg-[#FF0000]/10',
     icon: YouTubeIcon,
   },
   {
     name: 'Facebook',
-    url: 'https://www.facebook.com/My3CChurch/',
-    ariaLabel: 'Visit 3C Church on Facebook',
     hoverColor: 'hover:text-[#1877F2] hover:border-[#1877F2]/50 hover:bg-[#1877F2]/10',
     icon: FacebookIcon,
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/my3c_',
-    ariaLabel: 'Visit 3C Church on Instagram',
     hoverColor: 'hover:text-[#E4405F] hover:border-[#E4405F]/50 hover:bg-[#E4405F]/10',
     icon: InstagramIcon,
   },
   {
     name: 'TikTok',
-    url: 'https://www.tiktok.com/@bertpretorius',
-    ariaLabel: 'Visit Bert Pretorius on TikTok',
     // Dual colors: Electric Cyan (#25F4EE) & Neon Magenta (#FE2C55) simultaneously
     hoverColor: 'hover:text-white hover:border-transparent hover:shadow-[-2px_-2px_14px_rgba(37,244,238,0.55),2px_2px_14px_rgba(254,44,85,0.55)] hover:bg-gradient-to-r hover:from-[#25F4EE]/20 hover:via-[#080B12]/80 hover:to-[#FE2C55]/20',
     textGradient: 'group-hover:bg-gradient-to-r group-hover:from-[#25F4EE] group-hover:to-[#FE2C55] group-hover:bg-clip-text group-hover:text-transparent group-hover:font-bold',
@@ -121,15 +111,11 @@ export const SOCIAL_MEDIA_LINKS: SocialLink[] = [
   },
   {
     name: 'Spotify',
-    url: 'https://open.spotify.com/show/2wLFiZpfXw2hLztyAz4a9K',
-    ariaLabel: 'Listen to 3C Church on Spotify',
     hoverColor: 'hover:text-[#1ED760] hover:border-[#1ED760]/50 hover:bg-[#1ED760]/10',
     icon: SpotifyIcon,
   },
   {
     name: 'X',
-    url: 'https://x.com/BertPretorius',
-    ariaLabel: 'Visit Bert Pretorius on X',
     hoverColor: 'hover:text-white hover:border-white/50 hover:bg-white/10',
     icon: XIcon,
   },
@@ -155,13 +141,9 @@ export const SocialMediaRow: React.FC<SocialLinksProps> = ({
         
         if (variant === 'badges') {
           return (
-            <a
+            <span
               key={item.name}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.ariaLabel}
-              className={`inline-flex items-center gap-2 px-3 py-2 rounded-sm bg-[#080B12] border border-white/10 text-[#B0B7C3] transition-all duration-300 transform hover:-translate-y-0.5 ${item.hoverColor} group`}
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-sm bg-[#080B12] border border-white/10 text-[#B0B7C3] transition-all duration-300 ${item.hoverColor} group cursor-default`}
             >
               <Icon className={`${iconClassName} transition-colors group-hover:scale-110`} />
               {showLabels && (
@@ -169,37 +151,29 @@ export const SocialMediaRow: React.FC<SocialLinksProps> = ({
                   {item.name}
                 </span>
               )}
-            </a>
+            </span>
           );
         }
 
         if (variant === 'minimal') {
           return (
-            <a
+            <span
               key={item.name}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.ariaLabel}
-              className={`text-[#B0B7C3] transition-colors p-1.5 group ${item.hoverColor}`}
+              className={`text-[#B0B7C3] transition-colors p-1.5 group ${item.hoverColor} cursor-default`}
             >
               <Icon className={iconClassName} />
-            </a>
+            </span>
           );
         }
 
         // Default 'icons' circular/square buttons
         return (
-          <a
+          <span
             key={item.name}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={item.ariaLabel}
-            className={`w-9 h-9 rounded-sm flex items-center justify-center bg-white/5 border border-white/10 text-[#B0B7C3] transition-all duration-200 transform hover:scale-105 group ${item.hoverColor}`}
+            className={`w-9 h-9 rounded-sm flex items-center justify-center bg-white/5 border border-white/10 text-[#B0B7C3] transition-all duration-200 group ${item.hoverColor} cursor-default`}
           >
             <Icon className={iconClassName} />
-          </a>
+          </span>
         );
       })}
     </div>

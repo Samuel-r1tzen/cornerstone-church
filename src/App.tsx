@@ -6,40 +6,30 @@ import { PlanVisitPage } from './pages/PlanVisitPage';
 import { OurStoryPage } from './pages/OurStoryPage';
 import { MinistriesPage } from './pages/MinistriesPage';
 import { SermonsPage } from './pages/SermonsPage';
-import { WatchWorshipPage } from './pages/WatchWorshipPage';
-import { LiveServicePage } from './pages/LiveServicePage';
-import { PreviousServicesPage } from './pages/PreviousServicesPage';
 import { EventsPage } from './pages/EventsPage';
 import { ContactPage } from './pages/ContactPage';
 import { AdminPage } from './pages/AdminPage';
 import { PageId, InquiryType } from './types';
-import { CornerstoneLogo } from './components/CornerstoneLogo';
 
 export default function App() {
   // Read initial page from URL hash if available
   const getPageFromHash = (): PageId => {
     const hash = window.location.hash.replace('#/', '').replace('#', '');
-    if (hash === 'watch' || hash === 'watch-and-worship') return 'watch-worship';
-    const validPages: PageId[] = ['home', 'watch-worship', 'live', 'previous-services', 'visit', 'story', 'ministries', 'sermons', 'events', 'contact', 'admin'];
+    const validPages: PageId[] = ['home', 'visit', 'story', 'ministries', 'sermons', 'events', 'contact', 'admin'];
     return validPages.includes(hash as PageId) ? (hash as PageId) : 'home';
   };
 
   const [activePage, setActivePage] = useState<PageId>(getPageFromHash);
   const [contactInitialType, setContactInitialType] = useState<InquiryType>('visit');
   const [contactInitialMessage, setContactInitialMessage] = useState<string>('');
-  const [isLoaded, setIsLoaded] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Slow page appearance state (triggered when item selected from hamburger menu)
   const [isSlowAppearing, setIsSlowAppearing] = useState(false);
   const transitionTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Preloader & scroll progress
+  // Scroll progress
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 750);
-
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -49,7 +39,6 @@ export default function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -157,26 +146,6 @@ export default function App() {
             onJoinMinistry={handleJoinMinistry}
           />
         );
-      case 'watch-worship':
-        return (
-          <WatchWorshipPage 
-            onNavigate={(p) => navigateToPage(p)}
-          />
-        );
-      case 'live':
-        return (
-          <WatchWorshipPage 
-            onNavigate={(p) => navigateToPage(p)}
-            initialTab="live"
-          />
-        );
-      case 'previous-services':
-        return (
-          <WatchWorshipPage 
-            onNavigate={(p) => navigateToPage(p)}
-            initialTab="previous"
-          />
-        );
       case 'sermons':
         return (
           <SermonsPage 
@@ -219,13 +188,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#080B12] text-[#F5F2EE] font-sans antialiased selection:bg-[#FF6B2C] selection:text-[#080B12] relative overflow-x-hidden flex flex-col justify-between">
-      {/* Preloader Animation */}
-      <div id="preloader" className={isLoaded ? 'hidden' : ''} aria-hidden="true">
-        <div className="preloader-logo flex items-center justify-center">
-          <CornerstoneLogo size="lg" />
-        </div>
-      </div>
-
       {/* Scroll Progress Indicator */}
       <div id="scroll-progress" style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
 
