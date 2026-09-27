@@ -134,10 +134,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onPlanVisit }) =
               <span className="arrow">→</span>
             </button>
             <button 
-              onClick={() => onNavigate('sermons')}
+              onClick={() => onNavigate('live')}
               className="btn cursor-pointer bg-black/40 backdrop-blur-md border-white/20 hover:border-white/50"
             >
-              <span>Watch Online</span>
+              <span>Watch Live</span>
               <span className="arrow">→</span>
             </button>
           </div>
@@ -600,13 +600,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onPlanVisit }) =
             </p>
           </div>
 
-          <button
-            onClick={() => onNavigate('sermons')}
-            className="text-xs font-semibold text-[#FF6B2C] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
-          >
-            <span>Explore Sermon Catalog</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => onNavigate('live')}
+              className="px-3.5 py-2 rounded-sm bg-[#FF6B2C] hover:bg-[#FF824D] text-[#080B12] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              <span>Live Service</span>
+            </button>
+            <button
+              onClick={() => onNavigate('previous-services')}
+              className="px-3.5 py-2 rounded-sm bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              <span>Previous Services</span>
+            </button>
+            <button
+              onClick={() => onNavigate('sermons')}
+              className="text-xs font-semibold text-[#B0B7C3] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ml-1"
+            >
+              <span>Archive</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

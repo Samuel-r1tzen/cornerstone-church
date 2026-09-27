@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PageId, CursorOrigin } from '../types';
-import { Church, Calendar, X } from 'lucide-react';
+import { Calendar, X } from 'lucide-react';
 import { SocialMediaRow } from './SocialIcons';
+import { CornerstoneLogo } from './CornerstoneLogo';
 
 interface NavigationProps {
   activePage: PageId;
@@ -27,39 +28,39 @@ const MENU_ITEMS: NavItem[] = [
     anchor: '#hero'
   },
   {
-    id: 'story',
+    id: 'watch-worship',
     num: '02',
+    label: 'WATCH & WORSHIP',
+    mediaUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=85',
+    anchor: '#watch'
+  },
+  {
+    id: 'story',
+    num: '03',
     label: 'OUR STORY',
     mediaUrl: 'https://images.pexels.com/photos/2111015/pexels-photo-2111015.jpeg?auto=compress&cs=tinysrgb&w=1920',
     anchor: '#story'
   },
   {
     id: 'ministries',
-    num: '03',
+    num: '04',
     label: 'MINISTRIES',
     mediaUrl: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920',
     anchor: '#ministries'
   },
   {
     id: 'visit',
-    num: '04',
+    num: '05',
     label: 'PLAN A VISIT',
     mediaUrl: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1920',
     anchor: '#join'
   },
   {
     id: 'events',
-    num: '05',
+    num: '06',
     label: 'EVENTS',
     mediaUrl: 'https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&cs=tinysrgb&w=1920',
     anchor: '#events'
-  },
-  {
-    id: 'sermons',
-    num: '06',
-    label: 'SERMONS',
-    mediaUrl: 'https://images.pexels.com/photos/167491/pexels-photo-167491.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    anchor: '#sermons'
   },
   {
     id: 'contact',
@@ -124,11 +125,11 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   const desktopNavLinks: { id: PageId; label: string }[] = [
     { id: 'home', label: 'Home' },
+    { id: 'watch-worship', label: 'Watch & Worship' },
     { id: 'story', label: 'Our Story' },
     { id: 'visit', label: 'Plan A Visit' },
     { id: 'ministries', label: 'Ministries' },
     { id: 'events', label: 'Events' },
-    { id: 'sermons', label: 'Sermons' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -151,18 +152,9 @@ export const Navigation: React.FC<NavigationProps> = ({
               onNavigate('home');
             }} 
             className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#FF6B2C] rounded-sm text-left cursor-pointer"
+            aria-label="Cornerstone Church Home - Built on Christ, Open to Everyone"
           >
-            <div className="w-10 h-10 rounded-sm bg-[#FF6B2C] flex items-center justify-center text-[#080B12] font-bold shadow-lg shadow-[#FF6B2C]/20 group-hover:scale-105 transition-transform duration-300">
-              <Church className="w-5 h-5 stroke-[2.5]" />
-            </div>
-            <div>
-              <span className="font-display font-bold text-lg tracking-wider text-[#F5F2EE] block group-hover:text-[#FF6B2C] transition-colors">
-                CORNERSTONE
-              </span>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-[#B0B7C3] block font-medium">
-                Centurion, South Africa
-              </span>
-            </div>
+            <CornerstoneLogo />
           </button>
 
           {/* Desktop Navigation Links */}
@@ -400,8 +392,8 @@ export const Navigation: React.FC<NavigationProps> = ({
           </div>
 
           <div className="text-[11px] text-[#B0B7C3]/60 flex items-center justify-between pt-6 border-t border-white/10">
-            <span>© 2026 Cornerstone Church Centurion</span>
-            <span className="uppercase tracking-widest">Faith · People · Purpose</span>
+            <span>© 2026 Cornerstone Church</span>
+            <span className="uppercase tracking-widest">Built on Christ, Open to Everyone</span>
           </div>
         </div>
       </div>

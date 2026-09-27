@@ -1,4 +1,4 @@
-export type PageId = 'home' | 'visit' | 'story' | 'ministries' | 'sermons' | 'events' | 'contact' | 'admin';
+export type PageId = 'home' | 'watch-worship' | 'live' | 'previous-services' | 'visit' | 'story' | 'ministries' | 'sermons' | 'events' | 'contact' | 'admin';
 
 export interface CursorOrigin {
   x: number;

@@ -231,7 +231,7 @@ export const FEATURED_SERMON: Sermon = {
   date: 'September 13, 2026',
   scripture: 'Philippians 4:6–7 & Proverbs 3:5–6',
   duration: '38 min',
-  imageUrl: '/assets/images/sermon_surrender_1790258194984.jpg',
+  imageUrl: './assets/images/sermon_surrender_1790258194984.jpg',
   summary: 'When life feels overwhelming, God does not call us to carry tomorrow alone. Discover how relinquishing control unlocks supernatural peace that transcends understanding.',
   tags: ['Peace', 'Trust', 'Surrender', 'Spiritual Warfare'],
   featured: true

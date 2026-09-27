@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cornerstone Church</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // Redirects 404 paths to index.html preserving route in hash
+      (function() {
+        var pathSegmentsToKeep = 1;
+        var location = window.location;
+        var origin = location.origin;
+        var pathname = location.pathname;
+        
+        // Calculate repository subpath if applicable
+        var pathSegments = pathname.split('/').filter(Boolean);
+        var search = location.search ? location.search : '';
+        var hash = location.hash ? location.hash : '';
+        
+        // If deployed to username.github.io/repo-name/
+        // Redirect to /repo-name/#/target-path
+        if (pathSegments.length > 0) {
+          var repo = pathSegments[0];
+          var route = pathSegments.slice(1).join('/');
+          var target = origin + '/' + repo + '/#/' + route + search + (hash.replace(/^#/, ''));
+          window.location.replace(target);
+        } else {
+          window.location.replace(origin + '/#' + pathname + search + hash);
+        }
+      })();
+    </script>
+  </head>
+  <body style="background-color: #080B12; color: #F5F2EE; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <p>Redirecting to Cornerstone Church...</p>
+  </body>
+</html>

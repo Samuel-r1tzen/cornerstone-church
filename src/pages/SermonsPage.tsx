@@ -36,6 +36,21 @@ export const SermonsPage: React.FC<SermonsPageProps> = ({ onNavigate }) => {
             <p className="text-sm sm:text-base text-[#B0B7C3] leading-relaxed">
               Grounded in scripture and applied straight to modern life. Stream Sunday messages, follow along with series study guides, or listen during your daily commute.
             </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => onNavigate('live')}
+                className="btn btn-primary cursor-pointer px-4 py-2 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5"
+              >
+                <span>Watch Live Service</span>
+              </button>
+              <button
+                onClick={() => onNavigate('previous-services')}
+                className="px-4 py-2 rounded-sm bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <span>Previous Services ("The Satisfied Life")</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
