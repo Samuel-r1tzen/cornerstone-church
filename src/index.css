@@ -1,0 +1,515 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --navy: #0A0F1F;
+    --near-black: #080B12;
+    --charcoal: #141A29;
+    --warm-white: #F5F2EE;
+    --soft-grey: #B0B7C3;
+    --orange: #FF6B2C;
+    --orange-glow: rgba(255, 107, 44, 0.25);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--near-black);
+    color: var(--warm-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Subtle background film grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ============================================================
+   PRELOADER ANIMATION
+   ============================================================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--near-black);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
+  pointer-events: none;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-logo {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--warm-white);
+  opacity: 0;
+  animation: logoReveal 1.2s var(--ease-out-expo) 0.2s forwards;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+    letter-spacing: 0.25em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: 0.35em;
+  }
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: var(--orange);
+  box-shadow: 0 0 10px var(--orange-glow);
+  z-index: 9998;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   ANIMATED BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.85rem;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--warm-white);
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s var(--ease-out-expo), border-color 0.4s, transform 0.3s var(--ease-out-expo);
+  cursor: pointer;
+  border-radius: 2px;
+  user-select: none;
+}
+
+.btn .arrow {
+  transition: transform 0.4s var(--ease-out-expo);
+  display: inline-block;
+}
+
+.btn:hover {
+  border-color: var(--orange);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-primary {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--near-black);
+  font-weight: 700;
+}
+
+.btn-primary::before {
+  background: var(--white);
+}
+
+.btn-primary:hover {
+  color: var(--near-black);
+  border-color: var(--white);
+}
+
+/* ============================================================
+   HERO SCROLL INDICATOR
+   ============================================================ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.scroll-indicator span {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--soft-grey);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: var(--orange);
+  animation: scrollLine 2s var(--ease-out-expo) infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(350%);
+  }
+}
+
+/* ============================================================
+   PENCIL SVG STROKE-DRAWING SYSTEM
+   ============================================================ */
+.pencil-heading {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.pencil-svg {
+  width: 100%;
+  height: auto;
+  max-height: 84px;
+  display: block;
+  overflow: visible;
+}
+
+.pencil-svg text {
+  font-family: var(--font-display), 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  fill: #FFFFFF;
+  stroke: var(--warm-white);
+  stroke-width: 1.2;
+  letter-spacing: 0.04em;
+  text-anchor: start;
+  dominant-baseline: alphabetic;
+  transition: stroke-dashoffset 0.1s linear, fill-opacity 0.4s ease;
+  user-select: text;
+}
+
+/* ============================================================
+   SCROLL REVEAL ANIMATION SYSTEM
+   ============================================================ */
+[data-reveal="clip"],
+.reveal-clip {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.2s var(--ease-out-expo);
+}
+
+[data-reveal="clip"].revealed,
+.reveal-clip.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+[data-reveal="text"],
+.reveal-text {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+[data-reveal="text"].revealed,
+.reveal-text.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ministry & event cards */
+.ministry-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.5s var(--ease-out-expo), border-color 0.4s;
+  cursor: pointer;
+}
+
+.ministry-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--orange);
+}
+
+.ministry-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out-expo), filter 0.5s;
+  filter: brightness(0.65) saturate(0.9);
+}
+
+.ministry-card:hover img {
+  transform: scale(1.06);
+  filter: brightness(0.85) saturate(1.05);
+}
+
+.ministry-card .card-arrow {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--warm-white);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.4s, transform 0.4s var(--ease-out-expo), background 0.3s, color 0.3s;
+}
+
+.ministry-card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--near-black);
+}
+
+.ministry-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--orange);
+  transition: width 0.6s var(--ease-out-expo);
+}
+
+.ministry-card:hover::after {
+  width: 100%;
+}
+
+/* Experience items */
+.experience-item {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+
+.experience-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-item:hover .exp-title {
+  color: var(--orange);
+  transform: translateX(8px);
+}
+
+/* Event items */
+.event-item {
+  display: grid;
+  grid-template-columns: auto 110px 1fr auto;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), background 0.3s, padding 0.4s;
+}
+
+.event-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-item:hover {
+  background: rgba(255, 107, 44, 0.04);
+  padding-left: 1rem;
+}
+
+.event-item:hover .event-arrow {
+  color: var(--orange);
+  transform: translateX(6px);
+}
+
+@media (max-width: 640px) {
+  .event-item {
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Stats counter */
+.stat-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  background: rgba(8, 11, 18, 0.6);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s, transform 0.4s var(--ease-out-expo);
+}
+
+.stat-item:hover {
+  border-color: var(--orange);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+  display: block;
+}
+
+/* ============================================================
+   SLOW & SILKY PAGE APPEARANCE (Hamburger Menu Selection)
+   ============================================================ */
+:root {
+  --ease-slow-appear: cubic-bezier(0.16, 1, 0.3, 1);
+  --page-appear-duration: 1200ms;
+}
+
+/* Selected page slowly and smoothly appearing */
+.page-slow-appear {
+  animation: pageSlowAppear var(--page-appear-duration) var(--ease-slow-appear) forwards;
+  will-change: opacity;
+}
+
+@keyframes pageSlowAppear {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.15;
+  }
+  65% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-slow-appear {
+    animation-duration: 350ms;
+  }
+}
+
+/* ============================================================
+   KEN BURNS DRIFT ANIMATION FOR MENU BACKGROUND MEDIA
+   ============================================================ */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1.03) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.09) translate(-1%, -1%);
+  }
+}
+
+.ken-burns-idle {
+  animation: kenBurns 14s ease-in-out infinite alternate;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .pencil-svg text {
+    stroke-dashoffset: 0 !important;
+    fill-opacity: 1 !important;
+  }
+  [data-reveal="clip"],
+  .reveal-clip {
+    clip-path: inset(0 0 0 0) !important;
+  }
+  [data-reveal="text"],
+  .reveal-text,
+  .experience-item,
+  .event-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

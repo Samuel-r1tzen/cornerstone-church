@@ -1,0 +1,6 @@
+{
+  "name": "Cornerstone Church",
+  "description": "Christ-centred church community in Centurion featuring service times, ministries, sermons, visitor guide, and interactive contact form.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
