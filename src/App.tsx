@@ -122,47 +122,47 @@ export default function App() {
       case 'home':
         return (
           <HomePage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             onPlanVisit={() => navigateToPage('visit')}
           />
         );
       case 'visit':
         return (
           <PlanVisitPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
           />
         );
       case 'story':
         return (
           <OurStoryPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             onPlanVisit={() => navigateToPage('visit')}
           />
         );
       case 'ministries':
         return (
           <MinistriesPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             onJoinMinistry={handleJoinMinistry}
           />
         );
       case 'sermons':
         return (
           <SermonsPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
           />
         );
       case 'events':
         return (
           <EventsPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             onRSVP={handleRSVPEvent}
           />
         );
       case 'contact':
         return (
           <ContactPage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             initialType={contactInitialType}
             initialMessage={contactInitialMessage}
           />
@@ -176,7 +176,7 @@ export default function App() {
       default:
         return (
           <HomePage 
-            onNavigate={(p, coords) => navigateToPage(p, undefined, coords)}
+            onNavigate={(p) => navigateToPage(p)}
             onPlanVisit={() => navigateToPage('visit')}
           />
         );

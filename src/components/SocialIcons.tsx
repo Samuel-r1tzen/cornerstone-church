@@ -4,7 +4,7 @@ export interface SocialLink {
   name: string;
   hoverColor: string;
   textGradient?: string;
-  icon: (props: { className?: string }) => React.JSX.Element;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 export const YouTubeIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
