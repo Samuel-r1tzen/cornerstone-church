@@ -4,33 +4,35 @@
     <meta charset="utf-8">
     <title>Cornerstone Church</title>
     <script>
-      // Single Page Apps for GitHub Pages
-      // Redirects 404 paths to index.html preserving route in hash
       (function() {
-        var pathSegmentsToKeep = 1;
-        var location = window.location;
-        var origin = location.origin;
-        var pathname = location.pathname;
+        var path = window.location.pathname;
         
-        // Calculate repository subpath if applicable
-        var pathSegments = pathname.split('/').filter(Boolean);
-        var search = location.search ? location.search : '';
-        var hash = location.hash ? location.hash : '';
-        
-        // If deployed to username.github.io/repo-name/
-        // Redirect to /repo-name/#/target-path
-        if (pathSegments.length > 0) {
-          var repo = pathSegments[0];
-          var route = pathSegments.slice(1).join('/');
-          var target = origin + '/' + repo + '/#/' + route + search + (hash.replace(/^#/, ''));
-          window.location.replace(target);
+        // Never redirect for static files (scripts, stylesheets, images, fonts)
+        if (/\.[a-zA-Z0-9]+$/.test(path) || path.indexOf('/assets/') !== -1) {
+          return;
+        }
+
+        var origin = window.location.origin;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        var segments = path.split('/').filter(Boolean);
+
+        // For GitHub Pages subpath (e.g. /repo-name/page -> /repo-name/#/page)
+        if (segments.length > 1) {
+          var repo = segments[0];
+          var route = segments.slice(1).join('/');
+          window.location.replace(origin + '/' + repo + '/#/' + route + search + hash);
+        } else if (segments.length === 1) {
+          // If only /repo-name was visited without trailing slash
+          var repo = segments[0];
+          window.location.replace(origin + '/' + repo + '/' + search + hash);
         } else {
-          window.location.replace(origin + '/#' + pathname + search + hash);
+          window.location.replace(origin + '/#' + search + hash);
         }
       })();
     </script>
   </head>
   <body style="background-color: #080B12; color: #F5F2EE; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
-    <p>Redirecting to Cornerstone Church...</p>
+    <p>Loading Cornerstone Church...</p>
   </body>
 </html>

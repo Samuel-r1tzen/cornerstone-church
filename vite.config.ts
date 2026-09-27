@@ -4,7 +4,22 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
-  const base = process.env.VITE_BASE_PATH || process.env.BASE_PATH || (command === 'build' ? './' : '/');
+  let base = process.env.VITE_BASE_PATH || process.env.BASE_PATH || '';
+  if (!base && process.env.GITHUB_REPOSITORY) {
+    const parts = process.env.GITHUB_REPOSITORY.split('/');
+    const repo = parts[1];
+    if (repo && repo.toLowerCase().endsWith('.github.io')) {
+      base = '/';
+    } else if (repo) {
+      base = `/${repo}/`;
+    }
+  }
+  if (base) {
+    if (!base.startsWith('/')) base = '/' + base;
+    if (!base.endsWith('/')) base = base + '/';
+  } else {
+    base = command === 'build' ? './' : '/';
+  }
   return {
     base,
     plugins: [react(), tailwindcss()],
